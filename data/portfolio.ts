@@ -25,7 +25,7 @@ export const PORTFOLIO_DATA = {
      {
         title: "Video Editing",
         description: "Creating engaging video content with professional cuts, motion graphics, and sound design.",
-        tags: ["Premiere Pro", "After Effects", "Storytelling"]
+        tags: ["Filmora", "Motion Graphics", "Storytelling"]
      },
      {
         title: "Game Development",
@@ -151,7 +151,7 @@ export const PORTFOLIO_DATA = {
       longDescription: "A creative outlet showcasing high-energy game edits and anime music videos (AMVs). The channel has grown to a community of over 1,000 subscribers, featuring tutorials on editing techniques and showcase reels of visual effects mastery.",
       image: "/Youtube.png",
       link: "https://youtube.com/@hyisnoob1102",
-      tech: ["Premiere Pro", "After Effects", "Photoshop"]
+      tech: ["Filmora", "Photoshop", "Motion Graphics"]
     },
   ],
   skills: {
