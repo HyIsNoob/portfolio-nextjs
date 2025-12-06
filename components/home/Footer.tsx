@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Magnetic from "../ui/Magnetic";
+import YouTubeStats from "../ui/YouTubeStats";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
 
 export default function Footer() {
@@ -52,15 +53,16 @@ export default function Footer() {
       <div className="z-10 grid grid-cols-2 md:flex md:justify-between items-end gap-8 border-t border-white/10 pt-8">
         <div className="flex flex-col gap-2">
             <span className="text-accent text-xs uppercase">Socials</span>
-            <div className="flex flex-col md:flex-row gap-4 md:gap-8">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start md:items-center">
                 {PORTFOLIO_DATA.socials.map((social, idx) => (
                     <Magnetic key={idx} strength={0.2}>
                         <Link 
                             href={social.link}
                             target="_blank"
-                            className="hover:text-white text-accent transition-colors"
+                            className="hover:text-white text-accent transition-colors flex items-center gap-2"
                         >
                             {social.name}
+                            {social.name === "YouTube" && <YouTubeStats />}
                         </Link>
                     </Magnetic>
                 ))}

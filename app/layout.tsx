@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Oswald } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 import { CursorProvider } from "@/components/ui/CursorContext";
@@ -44,9 +45,10 @@ export default function RootLayout({
             <GrainOverlay />
             <CustomCursor />
             <AudioPlayer />
-            {children}
+        {children}
           </SmoothScroll>
         </CursorProvider>
+        <Analytics />
       </body>
     </html>
   );
