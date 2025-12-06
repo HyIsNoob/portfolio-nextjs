@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Disc, Activity, Code2, Music, Monitor, Smartphone, Globe, Users } from "lucide-react";
+import { Activity, Code2, Monitor, Smartphone, Globe } from "lucide-react";
 
 interface LanyardData {
   discord_user: {
@@ -45,17 +45,6 @@ interface LanyardData {
       small_image?: string;
     };
   }[];
-  listening_to_spotify: boolean;
-  spotify?: {
-    track_id: string;
-    timestamps: {
-      start: number;
-      end: number;
-    };
-    song: string;
-    artist: string;
-    album_art_url: string;
-  };
   active_on_discord_web?: boolean;
   active_on_discord_desktop?: boolean;
   active_on_discord_mobile?: boolean;
@@ -208,7 +197,6 @@ export default function DiscordActivity() {
     offline: "Offline",
   };
 
-  const spotify = data.spotify;
   const vsCode = data.activities.find((act) => act.name === "Visual Studio Code" || act.name === "Cursor");
 
   const avatarUrl = data.discord_user.avatar
@@ -248,9 +236,9 @@ export default function DiscordActivity() {
               </div>
             )}
 
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
               {/* Avatar Section */}
-              <div className="flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center md:items-start gap-4 md:w-64 shrink-0">
                 <div className="relative">
                   <motion.div
                     animate={{ 
@@ -261,36 +249,38 @@ export default function DiscordActivity() {
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-indigo-500/50"
+                    className="relative w-32 h-32 rounded-full overflow-visible border-4 border-indigo-500/50"
                   >
-                    <Image 
-                      src={avatarUrl} 
-                      alt={displayName} 
-                      fill 
-                      className="object-cover"
-                      unoptimized
-                    />
+                    <div className="relative w-full h-full rounded-full overflow-hidden">
+                      <Image 
+                        src={avatarUrl} 
+                        alt={displayName} 
+                        fill 
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
                     {decorationUrl && (
-                      <div className="absolute inset-0">
+                      <div className="absolute inset-0 pointer-events-none">
                         <Image 
                           src={decorationUrl} 
                           alt="Decoration" 
                           fill 
-                          className="object-contain"
+                          className="object-cover scale-110"
                           unoptimized
                         />
                       </div>
                     )}
-                    <div className={`absolute bottom-0 right-0 w-8 h-8 ${statusColor[data.discord_status]} rounded-full border-4 border-black`} />
+                    <div className={`absolute bottom-0 right-0 w-8 h-8 ${statusColor[data.discord_status]} rounded-full border-4 border-black z-10`} />
                   </motion.div>
                   
                   {/* Decorative Rings */}
-                  <div className="absolute inset-0 rounded-full border-2 border-indigo-500/20 animate-spin-slow" />
+                  <div className="absolute inset-0 rounded-full border-2 border-indigo-500/20 animate-spin-slow pointer-events-none" />
                 </div>
 
                 {/* Nameplate */}
                 {nameplateUrl && (
-                  <div className="relative w-full h-8 mb-2">
+                  <div className="relative w-48 h-8">
                     <Image 
                       src={nameplateUrl} 
                       alt="Nameplate" 
@@ -302,22 +292,22 @@ export default function DiscordActivity() {
                 )}
 
                 {/* User Info */}
-                <div className="text-center">
-                  <h3 className="text-xl font-bold mb-1">{displayName}</h3>
+                <div className="text-center md:text-left w-full">
+                  <h3 className="text-xl font-bold mb-1 uppercase">{displayName}</h3>
                   {data.discord_user.primary_guild && (
-                    <div className="flex items-center justify-center gap-1 mb-2">
+                    <div className="flex items-center gap-1 mb-2">
                       <span className="text-xs text-indigo-400 font-bold">
                         {data.discord_user.primary_guild.tag}
                       </span>
                     </div>
                   )}
-                  <div className="flex items-center justify-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
                     <div className={`w-2 h-2 rounded-full ${statusColor[data.discord_status]} animate-pulse`} />
                     <span className="text-sm text-accent">{statusText[data.discord_status]}</span>
                   </div>
                   
                   {/* Platform Indicators */}
-                  <div className="flex items-center justify-center gap-2 mt-2">
+                  <div className="flex items-center gap-2 mt-2 justify-center md:justify-start">
                     {data.active_on_discord_desktop && (
                       <div title="Desktop">
                         <Monitor size={14} className="text-indigo-400" />
@@ -338,36 +328,7 @@ export default function DiscordActivity() {
               </div>
 
               {/* Activity Section */}
-              <div className="md:col-span-2 space-y-4">
-                {spotify && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="bg-black/40 backdrop-blur-sm border border-green-500/20 rounded-xl p-4 flex items-center gap-4"
-                  >
-                    <div className="relative w-16 h-16 rounded-lg overflow-hidden shrink-0">
-                      <Image 
-                        src={spotify.album_art_url} 
-                        alt="Album Art" 
-                        fill 
-                        className="object-cover"
-                        unoptimized
-                      />
-                      <div className="absolute inset-0 bg-green-500/20 flex items-center justify-center">
-                        <Music className="text-green-400" size={24} />
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Disc size={14} className="text-green-400 animate-spin" />
-                        <span className="text-xs text-green-400 font-bold uppercase">Listening to Spotify</span>
-                      </div>
-                      <p className="text-white font-bold truncate">{spotify.song}</p>
-                      <p className="text-accent text-sm truncate">{spotify.artist}</p>
-                    </div>
-                  </motion.div>
-                )}
-
+              <div className="flex-1 space-y-4 w-full">
                 {vsCode && (
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -417,7 +378,7 @@ export default function DiscordActivity() {
                   </motion.div>
                 ))}
 
-                {!spotify && !vsCode && data.activities.filter(act => act.type === 0).length === 0 && (
+                {!vsCode && data.activities.filter(act => act.type === 0).length === 0 && (
                   <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
                     <p className="text-accent">No current activity</p>
                   </div>
