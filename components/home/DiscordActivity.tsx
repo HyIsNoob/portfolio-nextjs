@@ -208,7 +208,16 @@ export default function DiscordActivity() {
     : null;
 
   const nameplateUrl = data.discord_user.collectibles?.nameplate
-    ? `https://cdn.discordapp.com/${data.discord_user.collectibles.nameplate.asset}${data.discord_user.collectibles.nameplate.asset.endsWith('.png') || data.discord_user.collectibles.nameplate.asset.endsWith('.webp') ? '' : '.png'}`
+    ? (() => {
+        const asset = data.discord_user.collectibles.nameplate.asset;
+        if (asset.endsWith('.png') || asset.endsWith('.webp') || asset.endsWith('.jpg')) {
+          return `https://cdn.discordapp.com/${asset}`;
+        }
+        if (asset.endsWith('/')) {
+          return `https://cdn.discordapp.com/${asset.slice(0, -1)}.png`;
+        }
+        return `https://cdn.discordapp.com/${asset}.png`;
+      })()
     : null;
 
   const displayName = data.discord_user.display_name || data.discord_user.global_name || data.discord_user.username;
