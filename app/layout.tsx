@@ -25,7 +25,10 @@ export const metadata: Metadata = {
   title: "Nguyen Khang Hy | Creative Developer",
   description: "Portfolio of Nguyen Khang Hy - CS Student, Video Editor & Creative Developer.",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
   },
 };
 

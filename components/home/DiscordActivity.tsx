@@ -3,7 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Activity, Code2, Monitor, Smartphone, Globe } from "lucide-react";
+import { Activity, Code2, Monitor, Smartphone, Globe, Youtube, Github, Facebook, ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { PORTFOLIO_DATA } from "@/data/portfolio";
 
 interface LanyardData {
   discord_user: {
@@ -289,19 +291,6 @@ export default function DiscordActivity() {
 
                 {/* User Info - Compact */}
                 <div className="flex-1 md:flex-none text-left min-w-0">
-                  {/* Nameplate */}
-                  {nameplateUrl && (
-                    <div className="relative w-32 h-5 md:w-40 md:h-6 mb-2">
-                      <Image 
-                        src={nameplateUrl} 
-                        alt="Nameplate" 
-                        fill 
-                        className="object-contain object-left"
-                        unoptimized
-                      />
-                    </div>
-                  )}
-                  
                   <h3 className="text-lg md:text-xl font-bold mb-0.5 uppercase truncate">{displayName}</h3>
                   <div className="flex items-center gap-2 flex-wrap">
                     {data.discord_user.primary_guild && (
@@ -388,8 +377,34 @@ export default function DiscordActivity() {
                 ))}
 
                 {!vsCode && data.activities.filter(act => act.type === 0).length === 0 && (
-                  <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-3 text-center">
-                    <p className="text-accent text-sm">No current activity</p>
+                  <div className="space-y-3">
+                    <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-3 text-center">
+                      <p className="text-accent text-sm mb-3">No current activity</p>
+                    </div>
+                    
+                    {/* Social Links */}
+                    <div className="bg-black/40 backdrop-blur-sm border border-indigo-500/20 rounded-lg p-4">
+                      <h4 className="text-xs text-indigo-400 font-bold uppercase mb-3">Connect</h4>
+                      <div className="grid grid-cols-2 gap-2">
+                        {PORTFOLIO_DATA.socials.slice(0, 4).map((social, idx) => (
+                          <Link
+                            key={idx}
+                            href={social.link}
+                            target="_blank"
+                            className="flex items-center gap-2 p-2 rounded-lg bg-black/20 hover:bg-black/40 transition-colors group"
+                          >
+                            {social.name === "YouTube" && <Youtube size={16} className="text-red-500" />}
+                            {social.name === "GitHub" && <Github size={16} className="text-white" />}
+                            {social.name === "Facebook" && <Facebook size={16} className="text-blue-500" />}
+                            {social.name === "TikTok" && <Activity size={16} className="text-white" />}
+                            <span className="text-xs text-white group-hover:text-indigo-400 transition-colors truncate">
+                              {social.name}
+                            </span>
+                            <ExternalLink size={12} className="text-accent/50 ml-auto" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
