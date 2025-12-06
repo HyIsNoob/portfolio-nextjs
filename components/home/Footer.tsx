@@ -55,16 +55,18 @@ export default function Footer() {
             <span className="text-accent text-xs uppercase">Socials</span>
             <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start md:items-center">
                 {PORTFOLIO_DATA.socials.map((social, idx) => (
-                    <Magnetic key={idx} strength={0.2}>
-                        <Link 
-                            href={social.link}
-                            target="_blank"
-                            className="hover:text-white text-accent transition-colors flex items-center gap-2"
-                        >
-                            {social.name}
-                            {social.name === "YouTube" && <YouTubeStats />}
-                        </Link>
-                    </Magnetic>
+                    <div key={idx} className="flex items-center gap-2">
+                        <Magnetic strength={0.2}>
+                            <Link 
+                                href={social.link}
+                                target="_blank"
+                                className="hover:text-white text-accent transition-colors"
+                            >
+                                {social.name}
+                            </Link>
+                        </Magnetic>
+                        {social.name === "YouTube" && <YouTubeStats />}
+                    </div>
                 ))}
             </div>
         </div>
