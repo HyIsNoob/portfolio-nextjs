@@ -119,8 +119,8 @@ export default function DiscordActivity() {
   const vsCode = data.activities.find((act) => act.name === "Visual Studio Code" || act.name === "Cursor");
 
   const avatarUrl = data.discord_user.avatar
-    ? `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.png?size=256`
-    : `https://cdn.discordapp.com/embed/avatars/${parseInt(data.discord_user.discriminator) % 5}.png`;
+    ? `https://cdn.discordapp.com/avatars/${data.discord_user.id}/${data.discord_user.avatar}.webp?size=256`
+    : `https://cdn.discordapp.com/embed/avatars/${parseInt(data.discord_user.discriminator || "0") % 5}.png`;
 
   return (
     <section className="relative py-24 px-4 md:px-20 overflow-hidden border-t border-white/5">
@@ -157,6 +157,7 @@ export default function DiscordActivity() {
                       alt={data.discord_user.username} 
                       fill 
                       className="object-cover"
+                      unoptimized
                     />
                     <div className={`absolute bottom-0 right-0 w-8 h-8 ${statusColor[data.discord_status]} rounded-full border-4 border-black`} />
                   </motion.div>
