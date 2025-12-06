@@ -42,11 +42,39 @@ export default function Footer() {
 
       <div className="z-10 flex flex-col items-center justify-center gap-8 flex-grow">
         <Magnetic strength={0.3}>
-            <div className="w-48 h-48 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xl uppercase cursor-pointer hover:scale-110 transition-transform duration-500">
-                <Link href={`mailto:${PORTFOLIO_DATA.personal.email}`}>
-                    Let's Talk
-                </Link>
-            </div>
+          <Link href={`mailto:${PORTFOLIO_DATA.personal.email}`}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative group cursor-none"
+            >
+              <div className="relative px-12 py-6 bg-gradient-to-r from-white to-gray-200 text-black font-bold text-xl md:text-2xl uppercase tracking-widest rounded-full overflow-hidden">
+                <motion.div
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                  style={{ backgroundSize: "200% 100%" }}
+                />
+                <span className="relative z-10 flex items-center gap-3">
+                  Let's Create Together
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    →
+                  </motion.span>
+                </span>
+              </div>
+              
+              <div className="absolute -inset-1 bg-gradient-to-r from-white via-gray-400 to-white rounded-full opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+            </motion.div>
+          </Link>
         </Magnetic>
       </div>
 

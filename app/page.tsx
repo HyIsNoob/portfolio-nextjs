@@ -4,6 +4,8 @@ import HorizontalProjects from "@/components/home/HorizontalProjects";
 import Services from "@/components/home/Services";
 import GameSection from "@/components/home/GameSection";
 import VideoGallery from "@/components/home/VideoGallery";
+import YouTubeStatsSection from "@/components/home/YouTubeStatsSection";
+import DiscordActivity from "@/components/home/DiscordActivity";
 import Skills from "@/components/home/Skills";
 import Footer from "@/components/home/Footer";
 import DiscordStatus from "@/components/ui/DiscordStatus";
@@ -17,9 +19,11 @@ export default function Home() {
       <Services />
       <GameSection />
       <VideoGallery />
+      <YouTubeStatsSection />
+      <DiscordActivity />
       <HorizontalProjects />
       <Skills />
       <Footer />
-      </main>
+    </main>
   );
 }
