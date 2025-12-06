@@ -277,7 +277,7 @@ export default function DiscordActivity() {
                           src={decorationUrl} 
                           alt="Decoration" 
                           fill 
-                          className="object-cover scale-110"
+                          className="object-cover scale-125"
                           unoptimized
                         />
                       </div>

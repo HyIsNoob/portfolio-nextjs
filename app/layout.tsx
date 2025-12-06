@@ -3,8 +3,6 @@ import { Inter, Oswald } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import SmoothScroll from "@/components/ui/SmoothScroll";
-import { CursorProvider } from "@/components/ui/CursorContext";
-import CustomCursor from "@/components/ui/CustomCursor";
 import AudioPlayer from "@/components/ui/AudioPlayer";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import Preloader from "@/components/ui/Preloader";
@@ -42,15 +40,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${oswald.variable} bg-background text-foreground antialiased selection:bg-white selection:text-black`}
       >
-        <CursorProvider>
-          <Preloader />
-          <SmoothScroll>
-            <GrainOverlay />
-            <CustomCursor />
-            <AudioPlayer />
-        {children}
-          </SmoothScroll>
-        </CursorProvider>
+        <Preloader />
+        <SmoothScroll>
+          <GrainOverlay />
+          <AudioPlayer />
+          {children}
+        </SmoothScroll>
         <Analytics />
       </body>
     </html>
