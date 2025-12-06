@@ -208,7 +208,7 @@ export default function DiscordActivity() {
     : null;
 
   const nameplateUrl = data.discord_user.collectibles?.nameplate
-    ? `https://cdn.discordapp.com/${data.discord_user.collectibles.nameplate.asset}`
+    ? `https://cdn.discordapp.com/${data.discord_user.collectibles.nameplate.asset}${data.discord_user.collectibles.nameplate.asset.endsWith('.png') || data.discord_user.collectibles.nameplate.asset.endsWith('.webp') ? '' : '.png'}`
     : null;
 
   const displayName = data.discord_user.display_name || data.discord_user.global_name || data.discord_user.username;
@@ -223,23 +223,23 @@ export default function DiscordActivity() {
           transition={{ duration: 0.6 }}
           className="relative"
         >
-          <div className="bg-gradient-to-br from-indigo-900/20 via-black to-black border border-indigo-500/20 rounded-2xl p-8 md:p-12 overflow-hidden">
+          <div className="bg-gradient-to-br from-indigo-900/20 via-black to-black border border-indigo-500/20 rounded-2xl p-6 md:p-8 overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-indigo-500/5 rounded-full blur-3xl" />
 
             {/* Connection Status */}
             {connected && (
-              <div className="absolute top-4 right-4 flex items-center gap-2 text-xs text-green-400">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 text-xs text-green-400">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
                 <span>Live</span>
               </div>
             )}
 
-            <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start">
               {/* Avatar Section */}
-              <div className="flex flex-col items-center md:items-start gap-4 md:w-64 shrink-0">
-                <div className="relative">
+              <div className="flex flex-row md:flex-col items-center md:items-start gap-4 w-full md:w-auto shrink-0">
+                <div className="relative shrink-0">
                   <motion.div
                     animate={{ 
                       boxShadow: [
@@ -249,7 +249,7 @@ export default function DiscordActivity() {
                       ]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="relative w-32 h-32 rounded-full overflow-visible border-4 border-indigo-500/50"
+                    className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-visible border-3 border-indigo-500/50"
                   >
                     <div className="relative w-full h-full rounded-full overflow-hidden">
                       <Image 
@@ -271,56 +271,56 @@ export default function DiscordActivity() {
                         />
                       </div>
                     )}
-                    <div className={`absolute bottom-0 right-0 w-8 h-8 ${statusColor[data.discord_status]} rounded-full border-4 border-black z-10`} />
+                    <div className={`absolute bottom-0 right-0 w-6 h-6 md:w-7 md:h-7 ${statusColor[data.discord_status]} rounded-full border-3 border-black z-10`} />
                   </motion.div>
                   
                   {/* Decorative Rings */}
                   <div className="absolute inset-0 rounded-full border-2 border-indigo-500/20 animate-spin-slow pointer-events-none" />
                 </div>
 
-                {/* Nameplate */}
-                {nameplateUrl && (
-                  <div className="relative w-48 h-8">
-                    <Image 
-                      src={nameplateUrl} 
-                      alt="Nameplate" 
-                      fill 
-                      className="object-contain"
-                      unoptimized
-                    />
-                  </div>
-                )}
-
-                {/* User Info */}
-                <div className="text-center md:text-left w-full">
-                  <h3 className="text-xl font-bold mb-1 uppercase">{displayName}</h3>
-                  {data.discord_user.primary_guild && (
-                    <div className="flex items-center gap-1 mb-2">
+                {/* User Info - Compact */}
+                <div className="flex-1 md:flex-none text-left min-w-0">
+                  {/* Nameplate */}
+                  {nameplateUrl && (
+                    <div className="relative w-32 h-5 md:w-40 md:h-6 mb-2">
+                      <Image 
+                        src={nameplateUrl} 
+                        alt="Nameplate" 
+                        fill 
+                        className="object-contain object-left"
+                        unoptimized
+                      />
+                    </div>
+                  )}
+                  
+                  <h3 className="text-lg md:text-xl font-bold mb-0.5 uppercase truncate">{displayName}</h3>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {data.discord_user.primary_guild && (
                       <span className="text-xs text-indigo-400 font-bold">
                         {data.discord_user.primary_guild.tag}
                       </span>
+                    )}
+                    <div className="flex items-center gap-1.5">
+                      <div className={`w-1.5 h-1.5 rounded-full ${statusColor[data.discord_status]} animate-pulse`} />
+                      <span className="text-xs text-accent">{statusText[data.discord_status]}</span>
                     </div>
-                  )}
-                  <div className="flex items-center gap-2 mb-2 justify-center md:justify-start">
-                    <div className={`w-2 h-2 rounded-full ${statusColor[data.discord_status]} animate-pulse`} />
-                    <span className="text-sm text-accent">{statusText[data.discord_status]}</span>
-                  </div>
-                  
-                  {/* Platform Indicators */}
-                  <div className="flex items-center gap-2 mt-2 justify-center md:justify-start">
-                    {data.active_on_discord_desktop && (
-                      <div title="Desktop">
-                        <Monitor size={14} className="text-indigo-400" />
-                      </div>
-                    )}
-                    {data.active_on_discord_mobile && (
-                      <div title="Mobile">
-                        <Smartphone size={14} className="text-indigo-400" />
-                      </div>
-                    )}
-                    {data.active_on_discord_web && (
-                      <div title="Web">
-                        <Globe size={14} className="text-indigo-400" />
+                    {(data.active_on_discord_desktop || data.active_on_discord_mobile || data.active_on_discord_web) && (
+                      <div className="flex items-center gap-1.5 ml-1">
+                        {data.active_on_discord_desktop && (
+                          <div title="Desktop">
+                            <Monitor size={12} className="text-indigo-400" />
+                          </div>
+                        )}
+                        {data.active_on_discord_mobile && (
+                          <div title="Mobile">
+                            <Smartphone size={12} className="text-indigo-400" />
+                          </div>
+                        )}
+                        {data.active_on_discord_web && (
+                          <div title="Web">
+                            <Globe size={12} className="text-indigo-400" />
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -328,25 +328,25 @@ export default function DiscordActivity() {
               </div>
 
               {/* Activity Section */}
-              <div className="flex-1 space-y-4 w-full">
+              <div className="flex-1 space-y-3 w-full min-w-0">
                 {vsCode && (
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-black/40 backdrop-blur-sm border border-blue-500/20 rounded-xl p-4 flex items-center gap-4"
+                    className="bg-black/40 backdrop-blur-sm border border-blue-500/20 rounded-lg p-3 flex items-center gap-3"
                   >
-                    <div className="w-16 h-16 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0">
-                      <Code2 size={32} className="text-blue-400" />
+                    <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0">
+                      <Code2 size={24} className="text-blue-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Activity size={14} className="text-blue-400" />
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <Activity size={12} className="text-blue-400" />
                         <span className="text-xs text-blue-400 font-bold uppercase">Coding</span>
                       </div>
-                      <p className="text-white font-bold truncate">{vsCode.details || vsCode.name}</p>
+                      <p className="text-white text-sm font-bold truncate">{vsCode.details || vsCode.name}</p>
                       {vsCode.state && (
-                        <p className="text-accent text-sm truncate">{vsCode.state}</p>
+                        <p className="text-accent text-xs truncate">{vsCode.state}</p>
                       )}
                     </div>
                   </motion.div>
@@ -358,18 +358,18 @@ export default function DiscordActivity() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 + idx * 0.1 }}
-                    className="bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl p-4 flex items-center gap-4"
+                    className="bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-lg p-3 flex items-center gap-3"
                   >
-                    <div className="w-16 h-16 rounded-lg bg-purple-500/20 flex items-center justify-center shrink-0">
-                      <Activity size={32} className="text-purple-400" />
+                    <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center shrink-0">
+                      <Activity size={24} className="text-purple-400" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
+                      <div className="flex items-center gap-1.5 mb-0.5">
                         <span className="text-xs text-purple-400 font-bold uppercase">Playing</span>
                       </div>
-                      <p className="text-white font-bold truncate">{activity.name}</p>
+                      <p className="text-white text-sm font-bold truncate">{activity.name}</p>
                       {activity.details && (
-                        <p className="text-accent text-sm truncate">{activity.details}</p>
+                        <p className="text-accent text-xs truncate">{activity.details}</p>
                       )}
                       {activity.state && (
                         <p className="text-accent text-xs truncate">{activity.state}</p>
@@ -379,8 +379,8 @@ export default function DiscordActivity() {
                 ))}
 
                 {!vsCode && data.activities.filter(act => act.type === 0).length === 0 && (
-                  <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-xl p-4 text-center">
-                    <p className="text-accent">No current activity</p>
+                  <div className="bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg p-3 text-center">
+                    <p className="text-accent text-sm">No current activity</p>
                   </div>
                 )}
               </div>
