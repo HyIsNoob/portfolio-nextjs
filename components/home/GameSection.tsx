@@ -42,7 +42,7 @@ export default function GameSection() {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
                         transition={{ duration: 0.5 }}
-                        className="relative aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl group cursor-none"
+                        className="relative aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl group"
                     >
                         <Image 
                             src={games[activeGame].image} 

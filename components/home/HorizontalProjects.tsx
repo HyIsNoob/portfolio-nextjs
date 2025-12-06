@@ -33,7 +33,7 @@ export default function HorizontalProjects() {
           {projects.map((project, index) => (
             <div 
                 key={index}
-                className="group relative h-[60vh] w-[80vw] md:w-[40vw] flex-shrink-0 overflow-hidden bg-[#111] border border-white/10 cursor-none"
+                className="group relative h-[60vh] w-[80vw] md:w-[40vw] flex-shrink-0 overflow-hidden bg-[#111] border border-white/10"
                 onClick={() => {
                     setSelectedProject(project);
                     setActiveImage(0);

@@ -103,7 +103,7 @@ export default function YouTubeStatsSection() {
             target="_blank"
             className="group block"
           >
-            <div className="relative bg-gradient-to-br from-red-900/20 via-black to-black border border-red-500/20 rounded-2xl p-12 md:p-16 overflow-hidden cursor-none">
+            <div className="relative bg-gradient-to-br from-red-900/20 via-black to-black border border-red-500/20 rounded-2xl p-12 md:p-16 overflow-hidden">
               {/* Animated Background Gradient */}
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10 animate-pulse" />
               

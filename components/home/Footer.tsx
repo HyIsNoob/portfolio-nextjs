@@ -46,7 +46,7 @@ export default function Footer() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative group cursor-none"
+              className="relative group"
             >
               <div className="relative px-12 py-6 bg-gradient-to-r from-white to-gray-200 text-black font-bold text-xl md:text-2xl uppercase tracking-widest rounded-full overflow-hidden">
                 <motion.div

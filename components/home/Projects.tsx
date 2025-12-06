@@ -26,7 +26,7 @@ export default function Projects() {
             transition={{ duration: 0.5, delay: index * 0.1 }}
             viewport={{ once: true }}
             onClick={() => setSelectedProject(project)}
-            className="group/item relative border-b border-white/10 py-12 md:py-16 transition-all duration-500 hover:px-4 hover:border-white/30 cursor-none"
+            className="group/item relative border-b border-white/10 py-12 md:py-16 transition-all duration-500 hover:px-4 hover:border-white/30"
           >
             <div className="flex items-center justify-between pointer-events-none">
                 <div className="flex items-baseline gap-8 md:gap-16">
