@@ -47,8 +47,11 @@ export default function DiscordActivity() {
       try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
         const json = await res.json();
+        console.log("Lanyard API Response:", json);
         if (json.success) {
           setData(json.data);
+        } else {
+          console.error("Lanyard API returned success: false", json);
         }
       } catch (error) {
         console.error("Failed to fetch Lanyard data", error);
@@ -62,12 +65,36 @@ export default function DiscordActivity() {
     return () => clearInterval(interval);
   }, []);
 
-  if (loading || !data) {
+  if (loading) {
     return (
       <section className="relative py-24 px-4 md:px-20 overflow-hidden border-t border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="bg-[#111] border border-white/10 rounded-2xl p-12 h-[400px] flex items-center justify-center">
             <span className="text-accent">Loading Discord Status...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!data) {
+    return (
+      <section className="relative py-24 px-4 md:px-20 overflow-hidden border-t border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-gradient-to-br from-indigo-900/20 via-black to-black border border-indigo-500/20 rounded-2xl p-8 md:p-12 overflow-hidden">
+            <div className="text-center py-12">
+              <p className="text-accent mb-2">Discord Status Unavailable</p>
+              <p className="text-sm text-accent/70">
+                Make sure you've joined the Lanyard Discord server
+              </p>
+              <a 
+                href="https://discord.gg/lanyard" 
+                target="_blank"
+                className="text-indigo-400 hover:text-indigo-300 text-sm mt-4 inline-block"
+              >
+                Join Lanyard Server →
+              </a>
+            </div>
           </div>
         </div>
       </section>

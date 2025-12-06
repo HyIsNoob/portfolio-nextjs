@@ -5,9 +5,61 @@ import { motion } from "framer-motion";
 import { Users, TrendingUp, Play } from "lucide-react";
 import Link from "next/link";
 
+function CountUpNumber({ value, duration = 2 }: { value: number; duration?: number }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (value === 0) return;
+    
+    let startTime: number;
+    let animationFrame: number;
+    
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOutQuart * value);
+      
+      setDisplayValue(current);
+      
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+    
+    setDisplayValue(0);
+    animationFrame = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [value, duration]);
+
+  const formatted = displayValue >= 1000 
+    ? `${(displayValue / 1000).toFixed(1)}K` 
+    : displayValue.toString();
+
+  return (
+    <motion.span 
+      key={value}
+      initial={{ scale: 1.2, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      className="text-6xl md:text-8xl font-bold"
+    >
+      {formatted}
+    </motion.span>
+  );
+}
+
 export default function YouTubeStatsSection() {
   const [subscribers, setSubscribers] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     const fetchSubscribers = async () => {
@@ -16,6 +68,7 @@ export default function YouTubeStatsSection() {
         if (response.ok) {
           const data = await response.json();
           setSubscribers(data.subscriberCount);
+          setDisplayValue(data.subscriberCount);
         }
       } catch (error) {
         console.error("Failed to fetch YouTube stats", error);
@@ -29,11 +82,11 @@ export default function YouTubeStatsSection() {
     return () => clearInterval(interval);
   }, []);
 
-  const formattedCount = subscribers 
-    ? subscribers >= 1000 
-      ? `${(subscribers / 1000).toFixed(1)}K` 
-      : subscribers.toString()
-    : "1.0K";
+  useEffect(() => {
+    if (subscribers !== null) {
+      setDisplayValue(subscribers);
+    }
+  }, [subscribers]);
 
   return (
     <section className="relative py-24 px-4 md:px-20 overflow-hidden border-t border-white/5">
@@ -88,7 +141,7 @@ export default function YouTubeStatsSection() {
                       animate={{ scale: 1, opacity: 1 }}
                       className="flex items-baseline gap-2"
                     >
-                      <span className="text-6xl md:text-8xl font-bold">{formattedCount}</span>
+                      <CountUpNumber value={displayValue} duration={2} />
                       <span className="text-2xl md:text-4xl text-accent font-bold">Subscribers</span>
                     </motion.div>
                   )}
