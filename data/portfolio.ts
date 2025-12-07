@@ -61,6 +61,29 @@ export const PORTFOLIO_DATA = {
         tech: ["Unity", "C#", "2D Animation", "Roguelite Logic"]
     },
     {
+        id: "G03",
+        title: "Little Adventure",
+        category: "2D Platformer",
+        description: "A fast-paced 2D platformer with fluid movement and precise combat.",
+        longDescription: "Welcome to a fast-paced 2D platformer aimed at fluid movement and precise combat. Your goal is simple but challenging: traverse a dangerous world, defeat enemies, and collect Gems to fill your progress bar. Can you reach 100 points and survive the run? Features Variable Jump Height, Double Jump, Wall Slides, Dash with invincibility frames, and smart wall jumping mechanics.",
+        features: [
+            "Fluid Movement: Variable Jump, Double Jump, Wall Slides",
+            "Dynamic Combat: Mouse-aim shooting with Dash invincibility",
+            "Smart Wall Jumping: Refined parkour mechanics",
+            "Visual Polish: Ghost trails, particle effects, smooth animations",
+            "Enemy Variety: Patrolling guards, chasers, ranged snipers"
+        ],
+        image: "/game/LittleAdventure/5CJGnb.png",
+        gallery: [
+            "/game/LittleAdventure/5CJGnb.png",
+            "/game/LittleAdventure/heRX17.png",
+            "/game/LittleAdventure/pP7aj3.png",
+            "/game/LittleAdventure/1j+1Hm.png"
+        ],
+        link: "https://hyisnoob.itch.io/little-adventure",
+        tech: ["Unity", "C#", "2D Physics", "Animation System"]
+    },
+    {
         id: "G01",
         title: "Roll A FrieBall",
         category: "3D Platformer / Action",
@@ -141,7 +164,8 @@ export const PORTFOLIO_DATA = {
       longDescription: "An award-winning research project that utilizes Natural Language Processing (NLP) to automatically grade history essays. The system analyzes keyword density, context relevance, and historical accuracy to provide instant feedback to students.",
       image: "/History.png",
       link: "https://github.com/HyIsNoob/History-Grading-Web",
-      tech: ["Python", "NLP", "Flask", "React"]
+      tech: ["Python", "NLP", "Flask", "React"],
+      award: "3rd Prize - City-Level Science Research Competition"
     },
     {
       id: "04",

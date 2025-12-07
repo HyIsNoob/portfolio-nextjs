@@ -140,6 +140,14 @@ export default function HorizontalProjects() {
                         <span className="text-accent text-sm uppercase tracking-widest mb-2">{selectedProject.category}</span>
                         <h3 className="text-3xl md:text-5xl font-bold uppercase mb-6">{selectedProject.title}</h3>
                         
+                        {/* Award Badge */}
+                        {(selectedProject as any).award && (
+                            <div className="mb-6 inline-flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/50 text-yellow-400 px-4 py-2 rounded-full text-sm font-bold uppercase backdrop-blur-sm">
+                                <span>🏆</span>
+                                <span>{(selectedProject as any).award}</span>
+                            </div>
+                        )}
+                        
                         <div className="prose prose-invert prose-sm max-w-none mb-8 text-gray-300">
                             <p className="leading-relaxed">
                                 {selectedProject.longDescription || selectedProject.description}

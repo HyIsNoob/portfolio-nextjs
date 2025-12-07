@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import AudioPlayer from "@/components/ui/AudioPlayer";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import Preloader from "@/components/ui/Preloader";
+import ParallaxCursor from "@/components/ui/ParallaxCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
       >
         <Preloader />
         <SmoothScroll>
+          <ParallaxCursor />
           <GrainOverlay />
           <AudioPlayer />
           {children}

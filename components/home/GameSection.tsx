@@ -11,6 +11,7 @@ const games = PORTFOLIO_DATA.games;
 
 export default function GameSection() {
   const [activeGame, setActiveGame] = useState(0);
+  const [activeImages, setActiveImages] = useState<Record<number, number>>({});
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -37,7 +38,7 @@ export default function GameSection() {
             <div className="order-2 lg:order-1 relative">
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={activeGame}
+                        key={`${activeGame}-${activeImages[activeGame] || 0}`}
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.05 }}
@@ -45,7 +46,7 @@ export default function GameSection() {
                         className="relative aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl group"
                     >
                         <Image 
-                            src={games[activeGame].image} 
+                            src={games[activeGame].gallery[activeImages[activeGame] || 0]} 
                             alt={games[activeGame].title} 
                             fill 
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -66,9 +67,19 @@ export default function GameSection() {
                 {/* Gallery Thumbnails */}
                 <div className="flex gap-4 mt-6 overflow-x-auto pb-2 scrollbar-hide">
                     {games[activeGame].gallery.map((img, idx) => (
-                        <div key={idx} className="relative w-24 h-16 shrink-0 rounded-md overflow-hidden border border-white/10 cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+                        <button
+                            key={idx}
+                            onClick={() => {
+                                setActiveImages(prev => ({ ...prev, [activeGame]: idx }));
+                            }}
+                            className={`relative w-24 h-16 shrink-0 rounded-md overflow-hidden border transition-all ${
+                                (activeImages[activeGame] ?? 0) === idx
+                                    ? 'border-white opacity-100 scale-105' 
+                                    : 'border-white/10 opacity-60 hover:opacity-100'
+                            }`}
+                        >
                             <Image src={img} alt="Thumbnail" fill className="object-cover" />
-                        </div>
+                        </button>
                     ))}
                 </div>
             </div>
@@ -79,7 +90,12 @@ export default function GameSection() {
                     {games.map((game, index) => (
                         <button 
                             key={index}
-                            onClick={() => setActiveGame(index)}
+                            onClick={() => {
+                                setActiveGame(index);
+                                if (activeImages[index] === undefined) {
+                                    setActiveImages(prev => ({ ...prev, [index]: 0 }));
+                                }
+                            }}
                             className={`text-2xl md:text-4xl font-bold uppercase transition-colors ${activeGame === index ? 'text-white' : 'text-white/20 hover:text-white/50'}`}
                         >
                             {game.title}

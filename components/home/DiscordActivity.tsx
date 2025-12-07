@@ -105,8 +105,9 @@ export default function DiscordActivity() {
         };
 
         ws.onerror = (error) => {
-          console.error("WebSocket error:", error);
+          console.warn("WebSocket error, falling back to REST API:", error);
           setConnected(false);
+          fetchFallback();
         };
 
         ws.onclose = () => {
@@ -125,13 +126,32 @@ export default function DiscordActivity() {
 
     const fetchFallback = async () => {
       try {
-        const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`, {
+          signal: controller.signal,
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
         const json = await res.json();
-        if (json.success) {
+        if (json.success && json.data) {
           setData(json.data);
         }
       } catch (error) {
-        console.error("Failed to fetch Lanyard data", error);
+        if (error instanceof Error && error.name === 'AbortError') {
+          console.warn("Lanyard fetch timeout");
+        } else {
+          console.warn("Failed to fetch Lanyard data:", error);
+        }
       } finally {
         setLoading(false);
       }
