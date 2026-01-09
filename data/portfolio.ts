@@ -44,18 +44,16 @@ export const PORTFOLIO_DATA = {
         title: "Echoes Apogee",
         category: "2D Roguelite Survival (Bullet Heaven)",
         description: "A 2D roguelite survival game with intense wave-based combat, meta-progression, and epic boss battles.",
-        longDescription: "Echoes Apogee là game sinh tồn roguelite 2D lấy cảm hứng từ Vampire Survivors. Người chơi phải sinh tồn qua 15 phút đối mặt với hàng trăm quái vật, sau đó đánh bại Final Boss (Golem) trong 5 phút cuối. Được nâng cấp từ Lab03 thành đồ án cuối kì hoàn chỉnh với gameplay sâu sắc và hệ thống Meta-progression.",
+        longDescription: "A survival roguelite inspired by Vampire Survivors. Fight through 15 minutes of escalating waves with hundreds of enemies, then defeat the Final Boss (Golem) in the last 5 minutes. Upgraded from Lab03 to a complete final project with deep gameplay mechanics and meta-progression systems.",
         features: [
-            "3 Classes với đặc tính riêng: Mage (cân bằng), Warrior (cận chiến nhanh), Necromancer (triệu hồi Bat Pet)",
-            "7 Weapons đa dạng: Projectiles (Fireball, Dark Arrow, Boomerang), Area Control (Totem, Shockwave, Orbital Ball), Tactical (Bomb)",
-            "Boss Fight 2 Phase: Golem với cơ chế chiến đấu độc đáo và kỹ năng tấn công tầm xa",
-            "Meta-progression: Shop nâng cấp vĩnh viễn 9 chỉ số (Max HP, Movement Speed, Attack Damage, XP Gain, Crit Chance, Cooldown, Pickup Range, Gold Gain, Ability Size)",
-            "Wave System với độ khó tăng dần, 3 difficulty modes (Easy, Normal, Hard)",
-            "8 Enemy Types: 3 Slime variants, 3 Vampire variants, 2 Mini-bosses, Final Boss Golem",
-            "Advanced Systems: Object Pooling, ScriptableObject Architecture, Observer Pattern, Data Persistence",
-            "Audio System: 23 SFX, 7 BGM tracks, dynamic music switching for Boss Fight",
-            "Post Processing: Bloom, Color Grading, Vignette for visual depth",
-            "Award: Game of The Lab (Top 1 Class Project) - Upgraded to Final Project"
+            "3 Unique Classes: Mage (balanced), Warrior (fast melee), Necromancer (pet summoner)",
+            "7 Diverse Weapons: Projectiles, Area Control, and Tactical abilities",
+            "2-Phase Boss Fight: Golem with unique mechanics and ranged attacks",
+            "Meta-progression: Permanent shop upgrades for 9 stats",
+            "Wave System: Escalating difficulty with 3 modes (Easy/Normal/Hard)",
+            "8 Enemy Types: Slimes, Vampires, Mini-bosses, and Final Boss",
+            "Advanced Architecture: Object Pooling, ScriptableObjects, Observer Pattern",
+            "Award: Top 1 Class Project - Upgraded to Final Project"
         ],
         image: "/game/Echoes/tCgZ6B.png",
         gallery: [
