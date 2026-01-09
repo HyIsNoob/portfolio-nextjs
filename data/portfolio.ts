@@ -42,23 +42,33 @@ export const PORTFOLIO_DATA = {
     {
         id: "G02",
         title: "Echoes Apogee",
-        category: "2D Top-down Shooter",
-        description: "A fast-paced survival shooter. Build your kit, survive waves, and crush bosses.",
-        longDescription: "A survival roguelite where you grow stronger as waves escalate. Choose from diverse upgrade cards upon leveling up to build unique combat kits. Features 5 intense waves, 2 enemy families with variants, and challenging minibosses. Survive to the endless mode!",
+        category: "2D Roguelite Survival (Bullet Heaven)",
+        description: "A 2D roguelite survival game with intense wave-based combat, meta-progression, and epic boss battles.",
+        longDescription: "Echoes Apogee là game sinh tồn roguelite 2D lấy cảm hứng từ Vampire Survivors. Người chơi phải sinh tồn qua 15 phút đối mặt với hàng trăm quái vật, sau đó đánh bại Final Boss (Golem) trong 5 phút cuối. Được nâng cấp từ Lab03 thành đồ án cuối kì hoàn chỉnh với gameplay sâu sắc và hệ thống Meta-progression.",
         features: [
-            "Roguelite Progression System",
-            "5 Unique Skills & Upgrade Paths",
-            "Endless Mode after 10 minutes",
-            "Award: Game of The Lab (Top 1 Class Project)"
+            "3 Classes với đặc tính riêng: Mage (cân bằng), Warrior (cận chiến nhanh), Necromancer (triệu hồi Bat Pet)",
+            "7 Weapons đa dạng: Projectiles (Fireball, Dark Arrow, Boomerang), Area Control (Totem, Shockwave, Orbital Ball), Tactical (Bomb)",
+            "Boss Fight 2 Phase: Golem với cơ chế chiến đấu độc đáo và kỹ năng tấn công tầm xa",
+            "Meta-progression: Shop nâng cấp vĩnh viễn 9 chỉ số (Max HP, Movement Speed, Attack Damage, XP Gain, Crit Chance, Cooldown, Pickup Range, Gold Gain, Ability Size)",
+            "Wave System với độ khó tăng dần, 3 difficulty modes (Easy, Normal, Hard)",
+            "8 Enemy Types: 3 Slime variants, 3 Vampire variants, 2 Mini-bosses, Final Boss Golem",
+            "Advanced Systems: Object Pooling, ScriptableObject Architecture, Observer Pattern, Data Persistence",
+            "Audio System: 23 SFX, 7 BGM tracks, dynamic music switching for Boss Fight",
+            "Post Processing: Bloom, Color Grading, Vignette for visual depth",
+            "Award: Game of The Lab (Top 1 Class Project) - Upgraded to Final Project"
         ],
         image: "/game/Echoes/tCgZ6B.png",
         gallery: [
             "/game/Echoes/tCgZ6B.png",
-            "/game/Echoes/RU0t+W.png",
+            "/game/Echoes/2mzX9z.png",
+            "/game/Echoes/h7+xyA.png",
+            "/game/Echoes/riGiEP.png",
+            "/game/Echoes/Ucr2GD.png",
+            "/game/Echoes/X1_t+9.png",
             "/game/Echoes/zVa9nm.png"
         ],
         link: "https://hyisnoob.itch.io/echoes-apogee",
-        tech: ["Unity", "C#", "2D Animation", "Roguelite Logic"]
+        tech: ["Unity 6", "C#", "DOTween", "TextMeshPro", "Cinemachine", "Post Processing", "ScriptableObject", "Object Pooling", "Observer Pattern"]
     },
     {
         id: "G03",
