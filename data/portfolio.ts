@@ -9,7 +9,7 @@ export const PORTFOLIO_DATA = {
   about: {
     title: "Who am I?",
     description:
-      "I'm a 20-year-old Computer Science student at UIT (VNU-HCM) with a deep passion for Video Editing and Game Development. I blend technical skills with creative vision to build immersive digital experiences.",
+      "I'm a Computer Science student at UIT (VNU-HCM) with a deep passion for Video Editing and Game Development. I blend technical skills with creative vision to build immersive digital experiences.",
     details: [
       "Computer Science Student K18 at UIT",
       "Third Prize in High School Science Research Award (2021)",
@@ -29,8 +29,8 @@ export const PORTFOLIO_DATA = {
      },
      {
         title: "Game Development",
-        description: "Designing and programming immersive games with Unity and C#, focusing on gameplay mechanics.",
-        tags: ["Unity", "C#", "Level Design"]
+        description: "Designing and programming immersive games with Unity, focusing on gameplay mechanics.",
+        tags: ["Unity", "Level Design"]
      },
      {
         title: "Desktop Apps",
@@ -52,7 +52,7 @@ export const PORTFOLIO_DATA = {
             "Meta-progression: Permanent shop upgrades for 9 stats",
             "Wave System: Escalating difficulty with 3 modes (Easy/Normal/Hard)",
             "8 Enemy Types: Slimes, Vampires, Mini-bosses, and Final Boss",
-            "Advanced Architecture: Object Pooling, ScriptableObjects, Observer Pattern",
+            "Advanced Architecture: Singleton, ScriptableObjects, Observer Pattern",
             "Award: Top 1 Class Project - Upgraded to Final Project"
         ],
         image: "/game/Echoes/tCgZ6B.png",
@@ -66,7 +66,7 @@ export const PORTFOLIO_DATA = {
             "/game/Echoes/zVa9nm.png"
         ],
         link: "https://hyisnoob.itch.io/echoes-apogee",
-        tech: ["Unity 6", "C#", "DOTween", "TextMeshPro", "Cinemachine", "Post Processing", "ScriptableObject", "Object Pooling", "Observer Pattern"]
+        tech: ["Unity 6", "C#", "DOTween", "TextMeshPro", "Cinemachine", "Post Processing", "ScriptableObject","Observer Pattern"]
     },
     {
         id: "G03",
@@ -195,12 +195,9 @@ export const PORTFOLIO_DATA = {
       "Content Creation",
     ],
     technical: [
-      "JavaScript / TypeScript",
-      "React / Next.js",
+      "Java",
       "Python",
-      "Electron",
-      "WebGL / Three.js",
-      "Tailwind CSS",
+      "C++",
     ],
   },
   socials: [
